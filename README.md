@@ -16,6 +16,7 @@ Everything related to the Brainfuck language
 - Brainfuck compiler in Assembly _(The last chad move)_ 😂😂
 
 ## References
+- [Specifications](./brainfuck-specs.md)
 - [brainfuck.org](https://brainfuck.org/)
 - [Tutorial and Interpreter (No cheating at first)](https://gist.github.com/roachhd/dce54bec8ba55fb17d3a)
 - [Esolangs](https://esolangs.org/wiki/Brainfuck)
