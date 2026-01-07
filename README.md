@@ -1,6 +1,36 @@
 # brainfuck
 Everything related to the Brainfuck language
 
+## Table of content
+* [What is brainfuck](#what-is-brainfuck)
+  * [Interpreter Design](#interpreter-design)
+  * [The instructions](#the-instructions)
+* [How my interpreter works](#how-my-interpreter-works)
+* [Initial Goal for the interpreter in C](initial-goal-for-the-interpreter-in-c)
+* [Other Goals](#other-goals)
+* [References](#references)
+
+## What is Brainfuck?
+Brain fuck is m esoteric language that is turing complete so theoretically anything that a turing machine can compute can be computed in brainfuck. It's distinguishing feature ks that it only uses eight symbols for instructions (and ignores rest) to do anything achievable (given infinite time and memory).
+
+### Interpreter design
+- the size of the tape is taken `30000` in general
+- each cell is `1 byte` in size storing from `0 to 255`
+- incrementing `255` gives `0`
+- decrementing `0` gives `255` _(making a full circle)_
+### The instructions
+- `+` - increment the value of current cell by 1
+- `-` - decrement the value of current cell by 1
+- `>` - shifts the memory pointer to right by one
+- `<` - shifts the memory pointer to left by one
+- `[` - jump to the next corresponding `]` if value at current cell is zero
+- `]` - jump to the next corresponding `[` if value at current cell is non zero
+- `.` - output the value of current cell in ASCII
+- `,` - take one byte input from user and store as integer
+
+## How my Interpreter works
+- `Fetching update...`
+
 ## Initial Goal for the interpreter in C
 - working compiler ✅
 - dynamic file input
@@ -8,6 +38,9 @@ Everything related to the Brainfuck language
 - polish for use
 - give helpful errors
 - clean up the code
+- add optimizations like
+  - pre counting number of `+` or `-`
+  - try to execute a block instead of byte by byte
 - add helpful comments
 - try to use Make or CMake or something
 - release binaries
