@@ -30,7 +30,7 @@ Brain fuck is m esoteric language that is turing complete so theoretically anyth
 
 ## Initial Goal for the interpreter in C
 - working compiler ✅
-- dynamic file input
+- dynamic file input ✅
 - shell interpreter
 - polish for use
 - give helpful errors
