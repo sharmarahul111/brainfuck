@@ -5,28 +5,30 @@ unsigned char tape[30000];
 short pointer = 0;
 // Hard coded file length
 // Gotta implement dynamic allocation later
-char command[1000];
+char command[50000];
 short code_pointer = 0;
 short loop_start = -1;
 short loop_end = -1;
 
+// global controls
+int repl_mode = 0;
 int match_opening_braces(int);
 int match_closing_braces(int);
 void usage(char []);
 void error(int code);
 void copy_to_memory(FILE *);
 void exec();
+void repl();
 int main(int argc, char *argv[]){
   FILE *fp;
   if (argc>2) {
     usage(argv[0]);
     return 1;
   } else if(argc == 2){
-    if (!strcmp(argv[1], "-h") || !strcmp(argv[1], "--help") || argv[1][0] == '-') {
-      usage(argv[0]);
-    } else if (!strcmp(argv[1], "-v") || !strcmp(argv[1], "--version")) {
+    if (!strcmp(argv[1], "-v") || !strcmp(argv[1], "--version")) {
       printf("%s\n", VERSION);
-      return 0;
+    } else if (!strcmp(argv[1], "-h") || !strcmp(argv[1], "--help") || argv[1][0] == '-') {
+      usage(argv[0]);
     } else {
       fp = fopen(argv[1], "r");
       if (fp == NULL) {
@@ -35,6 +37,10 @@ int main(int argc, char *argv[]){
         copy_to_memory(fp);
       }
     }
+  } else {
+    //REPL
+    repl_mode = 1;
+    repl();
   }
   while(command[code_pointer]!='\0'){
     // printf("\nCode pointer at: %d[%c]", code_pointer, command[code_pointer]);
@@ -85,6 +91,19 @@ void exec(){
       break;
     default:
       ; // ignore
+  }
+}
+void repl(){
+  printf("Brainfuck %s, by Pramendra Sharma\n", VERSION);
+  while(repl_mode){
+    code_pointer = 0;
+    printf(">>>");
+    scanf("%s", command);
+    while(command[code_pointer]!='\0'){
+      exec();
+
+      code_pointer++;
+    }
   }
 }
 int match_opening_braces(int index){
