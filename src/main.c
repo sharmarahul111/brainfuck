@@ -3,12 +3,6 @@
 #define VERSION "1.0.0"
 unsigned char tape[30000];
 short pointer = 0;
-// char command[500] = "++++++[>++++++<-]>.";
-// char command[100] = "++++++++++++++++++++++++++++++++++....";
-// char command[500] = "++++++++[>++++[>++>+++>+++>+<<<<-]>+>+>->>+[<]<-]>>.>---.+++++++..+++.>>.<-.<.+++.------.--------.>>+.>++";
-// char command[500]=",+.>,+++.";
-// char command[500] = "+>>+++++++++++++++++++++++++++++<<[>>>[>>]<[[>>+<<-]>>-[<<]]>+<<[-<<]<]>+>>[-<<]<+++++++++[>++++++++>+<<-]>-.----.>.";
-// char command[100]="++++++++[>++++++++++++<-]>+.";
 // Hard coded file length
 // Gotta implement dynamic allocation later
 char command[1000];
@@ -21,6 +15,7 @@ int match_closing_braces(int);
 void usage(char []);
 void error(int code);
 void copy_to_memory(FILE *);
+void exec();
 int main(int argc, char *argv[]){
   FILE *fp;
   if (argc>2) {
@@ -38,58 +33,60 @@ int main(int argc, char *argv[]){
         printf("Error opening file: %s\n", argv[1]);
       } else {
         copy_to_memory(fp);
-        return 0;
       }
     }
   }
   while(command[code_pointer]!='\0'){
     // printf("\nCode pointer at: %d[%c]", code_pointer, command[code_pointer]);
-    switch(command[code_pointer]){
-      case '+':
-        tape[pointer]++;
-        // printf("\n[Increment value to %d[%d]", pointer, tape[pointer]);
-        break;
-      case '-':
-        tape[pointer]--;
-        // printf("\n[Decrement value to %d]", pointer);
-        break;
-      case '>':
-        pointer++;
-        // printf("\n[Increment pointer to %d]", pointer);
-        break;
-      case '<':
-        pointer--;
-        // printf("\n[Decrement pointer to %d]", pointer);
-        break;
-      case '.':
-        // printf("\n[Output:%d]", tape[pointer]);
-        printf("%c", tape[pointer]);
-        break;
-      case ',':
-        // printf("\n[Input:]");
-        scanf(" %c", &tape[pointer]);
-        // printf("\n[Got:%d]", tape[pointer]);
-        break;
-      case '[':
-        if (!tape[pointer]) {
-          code_pointer = match_closing_braces(code_pointer);
-          // printf("\nNeeds code jump");
-        }
-        break;
-      case ']':
-        if (tape[pointer]) {
-          code_pointer = match_opening_braces(code_pointer);
-          // printf("\nNeeds code jump");
-        }
-        break;
-      default:
-        ; // ignore
-    }
+    exec();
+
     code_pointer++;
   }
   return 0;
 }
-
+void exec(){
+  switch(command[code_pointer]){
+    case '+':
+      tape[pointer]++;
+      // printf("\n[Increment value to %d[%d]", pointer, tape[pointer]);
+      break;
+    case '-':
+      tape[pointer]--;
+      // printf("\n[Decrement value to %d]", pointer);
+      break;
+    case '>':
+      pointer++;
+      // printf("\n[Increment pointer to %d]", pointer);
+      break;
+    case '<':
+      pointer--;
+      // printf("\n[Decrement pointer to %d]", pointer);
+      break;
+    case '.':
+      // printf("\n[Output:%d]", tape[pointer]);
+      printf("%c", tape[pointer]);
+      break;
+    case ',':
+      // printf("\n[Input:]");
+      scanf(" %c", &tape[pointer]);
+      // printf("\n[Got:%d]", tape[pointer]);
+      break;
+    case '[':
+      if (!tape[pointer]) {
+        code_pointer = match_closing_braces(code_pointer);
+        // printf("\nNeeds code jump");
+      }
+      break;
+    case ']':
+      if (tape[pointer]) {
+        code_pointer = match_opening_braces(code_pointer);
+        // printf("\nNeeds code jump");
+      }
+      break;
+    default:
+      ; // ignore
+  }
+}
 int match_opening_braces(int index){
   int nesting = 0;
   int i=index-1;
@@ -144,8 +141,10 @@ void copy_to_memory(FILE *fp){
   while(1){
     c = fgetc(fp);
     if (c == EOF) {
+      command[i] = '\0';
       break;
     }
-    printf("%c", c);
+    command[i] = c;
+    i++;
   }
 }
