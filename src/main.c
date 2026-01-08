@@ -15,7 +15,6 @@ int repl_mode = 0;
 int match_opening_braces(int);
 int match_closing_braces(int);
 void usage(char []);
-void error(int code);
 void copy_to_memory(FILE *);
 void exec();
 void repl();
@@ -119,7 +118,8 @@ int match_opening_braces(int index){
         return i;
       }
     }else if (command[i]=='\0') {
-      error(1);
+      printf("Unexpected end of file");
+      return i;
     }
     i--;
   }
@@ -138,7 +138,8 @@ int match_closing_braces(int index){
         return i;
       }
     }else if(i<0){
-      error(1);
+      printf("Unexpected end of file");
+      return 0;
     }
     i++;
   }
