@@ -1,5 +1,5 @@
 #include<stdio.h>
-unsigned char tape[90];
+unsigned char tape[30000];
 short pointer = 0;
 // char command[500] = "++++++[>++++++<-]>.";
 // char command[100] = "++++++++++++++++++++++++++++++++++....";

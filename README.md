@@ -18,6 +18,8 @@ Brain fuck is m esoteric language that is turing complete so theoretically anyth
 - each cell is `1 byte` in size storing from `0 to 255`
 - incrementing `255` gives `0`
 - decrementing `0` gives `255` _(making a full circle)_
+- wrap the cells at the edge of the tape
+- throw an error if wrapping causes overwrite
 ### The instructions
 - `+` - increment the value of current cell by 1
 - `-` - decrement the value of current cell by 1
