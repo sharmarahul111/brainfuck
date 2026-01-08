@@ -18,8 +18,6 @@ Brain fuck is m esoteric language that is turing complete so theoretically anyth
 - each cell is `1 byte` in size storing from `0 to 255`
 - incrementing `255` gives `0`
 - decrementing `0` gives `255` _(making a full circle)_
-- wrap the cells at the edge of the tape
-- throw an error if wrapping causes overwrite
 ### The instructions
 - `+` - increment the value of current cell by 1
 - `-` - decrement the value of current cell by 1
@@ -30,9 +28,6 @@ Brain fuck is m esoteric language that is turing complete so theoretically anyth
 - `.` - output the value of current cell in ASCII
 - `,` - take one byte input from user and store as integer
 
-## How my Interpreter works
-- `Fetching update...`
-
 ## Initial Goal for the interpreter in C
 - working compiler ✅
 - dynamic file input
@@ -40,6 +35,8 @@ Brain fuck is m esoteric language that is turing complete so theoretically anyth
 - polish for use
 - give helpful errors
 - clean up the code
+- wrap the cells at the edge of the tape
+- throw an error if wrapping causes overwrite
 - add optimizations like
   - pre counting number of `+` or `-`
   - try to execute a block instead of byte by byte
