@@ -32,9 +32,9 @@ Brain fuck is m esoteric language that is turing complete so theoretically anyth
 - dynamic file input ✅
 - shell interpreter ✅
 - polish for use
-- give helpful errors
+- give helpful errors ✅
 - clean up the code
-- wrap the cells at the edge of the tape
+- give error for accessing unavailable memory or expand the memory ✅
 - throw an error if wrapping causes overwrite
 - add optimizations like
   - pre counting number of `+` or `-`
@@ -58,7 +58,6 @@ Brain fuck is m esoteric language that is turing complete so theoretically anyth
 - Brainfuck compiler in Assembly _(The last chad move)_ 😂😂
 
 ## References
-- [Specifications](./brainfuck-specs.md)
 - [brainfuck.org](https://brainfuck.org/)
 - [Tutorial and Interpreter (No cheating at first)](https://gist.github.com/roachhd/dce54bec8ba55fb17d3a)
 - [Esolangs](https://esolangs.org/wiki/Brainfuck)
