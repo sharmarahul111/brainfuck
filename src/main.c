@@ -92,9 +92,6 @@ void exec(){
     case ']':
       if (tape[pointer]) {
         code_pointer = match_opening_braces(code_pointer);
-        if (code_pointer<=0) {
-          error = 1;
-        }
       }
       break;
     default:
@@ -103,10 +100,10 @@ void exec(){
 }
 void repl(){
   printf("Brainfuck %s, by Pramendra Sharma\n", VERSION);
-  while(repl_mode){
+  while(repl_mode && error==0){
     code_pointer = 0;
     printf(">>>");
-    scanf(" %s", command);
+    scanf("%s", command);
     while(command[code_pointer]!='\0' && error==0){
       exec();
 
@@ -148,9 +145,7 @@ int match_closing_braces(int index){
         return i;
       }
     }else if(command[i]=='\0'){
-      if (!repl_mode) {
-        printf("Error: Couldn't find corresponding ']'");
-      }
+      printf("Error: Couldn't find corresponding ']'");
       error = 1;
       return i;
     }
