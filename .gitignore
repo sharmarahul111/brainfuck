@@ -1,4 +1,5 @@
 bin/
+build/
 # Compiled C binaries
 *.out
 *.exe
