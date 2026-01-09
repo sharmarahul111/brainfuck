@@ -33,8 +33,14 @@ Brain fuck is m esoteric language that is turing complete so theoretically anyth
 - `,` - take one byte input from user and store as integer
 
 ## Features
-- execute a file via `$brainfuck <file>`
-- enter interactive mode (REPL) via `$brainfuck`
+- execute a file via
+```sh
+brainfuck <file>
+```
+- enter interactive mode (REPL) via
+```sh
+brainfuck
+```
 - gives helpful errors
   - Error: Couldn't open file: `<file>`
   - Error: Maximum tape length exceeded
@@ -44,11 +50,30 @@ Brain fuck is m esoteric language that is turing complete so theoretically anyth
 - access the binaries in the release section
 
 ## Usage
-* Execute from a file `$brainfuck <file>`
-* Interactive shell (REPL mode) `$brainfuck`
-* Help menu `$brainfuck -h` or `$brainfuck --help`
-* Version number `$brainfuck -v` or `$brainfuck --version`
-* About author `$brainfuck --about`
+* Execute from a file
+```sh
+brainfuck <file>
+```
+* Interactive shell (REPL mode)
+```sh
+brainfuck
+```
+* Help menu
+```sh
+brainfuck -h
+#or
+brainfuck --help
+```
+* Version number
+```sh
+brainfuck -v
+#or
+brainfuck --version
+```
+* About author
+```sh
+brainfuck --about
+```
 * Anything else shows the usage menu
 
 
